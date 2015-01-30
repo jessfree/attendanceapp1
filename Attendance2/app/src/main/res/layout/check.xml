@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent" 
+tools:context="com.example.gtacampus.CheckData">
+<TextView
+android:id="@+id/selection2"
+android:layout_width="fill_parent"
+android:layout_height="50dp"
+android:text=""
+android:gravity="center"
+android:textSize="20sp"
+android:textStyle="bold"
+android:textColor="#0f0"
+/>
+
+<View android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:background="@android:drawable/divider_horizontal_dark">
+			</View>
+
+<ListView
+android:id="@android:id/list"
+android:layout_width="fill_parent"
+android:layout_height="0dip"
+android:drawSelectorOnTop="false"
+android:textSize="12sp"
+android:layout_weight="1"
+/>
+
+<Button 
+        android:id="@+id/add_course"
+        style="@style/Menu_Button"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:onClick="coursefn"
+        android:drawableLeft="@android:drawable/ic_input_add"
+        android:text="@string/addcourse"></Button>
+</LinearLayout>

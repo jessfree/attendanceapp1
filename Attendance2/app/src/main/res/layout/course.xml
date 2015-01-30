@@ -1,0 +1,167 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center"
+        android:text="@string/course_info1"
+        android:textColor="#0066CC"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <View android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:drawable/divider_horizontal_bright"/>
+    
+    
+    <LinearLayout android:layout_width="fill_parent"
+        android:baselineAligned="false"
+    android:layout_height="wrap_content" 
+    android:padding="5dp"
+    android:gravity="center"
+    android:orientation="horizontal">
+    
+   
+        <TextView 
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:textColor="#FFF"
+    android:textSize="20sp"
+    android:text="@string/coursename"/>
+        
+        <EditText
+        android:id="@+id/course_name"
+        android:minWidth="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:hint="@string/coursename"
+        android:inputType="text"
+        android:textColor="#F00" /></LinearLayout>
+    
+    
+    <LinearLayout android:layout_width="fill_parent"
+    android:baselineAligned="false"
+    android:layout_height="wrap_content"
+    android:gravity="center" 
+    android:padding="5dp"
+    android:orientation="horizontal">
+    
+        <TextView 
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    android:textColor="#FFF"
+    android:text="@string/coursecode"/>
+        
+           <EditText
+        android:id="@+id/course_code"
+        android:minWidth="100dp"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:hint = "@string/coursecode"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="#F00" /></LinearLayout>
+    
+        <LinearLayout android:layout_width="fill_parent"
+    android:baselineAligned="false"
+    android:layout_height="wrap_content" 
+    android:gravity="center" 
+    android:padding="5dp"
+    android:orientation="horizontal">
+        
+        <TextView 
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    android:textColor="#FFF"
+    android:text="@string/teacher"/>
+           
+
+    <EditText
+        android:id="@+id/course_teacher"
+        android:minWidth="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/teacher"
+        android:textStyle="bold"
+        android:textColor="#F00" />
+
+       </LinearLayout>
+
+    
+        
+    <TextView 
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:textSize="20sp"
+    android:textColor="#FFF"
+    android:gravity="center"
+    android:textStyle="bold"
+    android:text="@string/coursetimings"/>
+    
+    <View android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:drawable/divider_horizontal_bright"/>
+
+    
+<ScrollView android:layout_width="match_parent"
+     android:layout_height="0dip"
+     android:layout_weight="1"
+     android:scrollbars="vertical">
+    
+     <LinearLayout android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:orientation="vertical">  
+    
+    <LinearLayout android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:id="@+id/ll_course_timing"
+     android:orientation="vertical">  
+    </LinearLayout>
+    
+<LinearLayout android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:id="@+id/ll_get_course_timing"
+     android:layout_marginLeft="40dp"
+     android:orientation="horizontal">
+    
+    <Spinner android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:entries="@array/week"
+        android:id="@+id/course_day"/>
+    
+        <Spinner android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/course_time" />
+        
+        <Button
+        android:id="@+id/timebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addtime"
+        android:text="@string/addtime" />
+    </LinearLayout>  </LinearLayout>
+    </ScrollView>
+    
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:onClick="addata"
+        android:background="@drawable/button_bg"
+        android:drawableLeft="@android:drawable/ic_menu_save"
+        android:text="@string/save" />
+
+</LinearLayout>
