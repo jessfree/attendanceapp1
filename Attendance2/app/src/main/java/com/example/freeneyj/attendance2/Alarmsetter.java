@@ -1,5 +1,5 @@
 /*
- * GTAcampuS v1 Copyright (c) 2013 Godly T.Alias
+ * freeneyj.attendance2 v1 Copyright (c) 2013 Godly T.Alias
  * 
    This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ public class Alarmsetter extends ListActivity {
 	Cursor alarms;
 	String alarmtitle;
 	Button newalarm, newtask;
-	com.example.gtacampus.DataManipulator db;
+	com.example.freeneyj.attendance2.DataManipulator db;
 	ListView list;
 	
 	protected void onCreate(android.os.Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class Alarmsetter extends ListActivity {
 
 	
 	private void initlist(){
-		db = new com.example.gtacampus.DataManipulator(this);
+		db = new com.example.freeneyj.attendance2.DataManipulator(this);
 		alarms = db.fetchalarms();
 		String[] alarmlist = new String[alarms.getCount()];
 		if(alarms!=null)
@@ -137,11 +137,11 @@ public class Alarmsetter extends ListActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(requestCode==10){
 			if(resultCode== Activity.RESULT_OK){
-				db = new com.example.gtacampus.DataManipulator(Alarmsetter.this);
+				db = new com.example.freeneyj.attendance2.DataManipulator(Alarmsetter.this);
 				db.deletealarm(alarmid);
 				db.close();
 				initlist();
-				Intent i = new Intent(getBaseContext(), com.example.gtacampus.MyAlarm.class);
+				Intent i = new Intent(getBaseContext(), com.example.freeneyj.attendance2.MyAlarm.class);
 				i.setAction("setalarm");
 				startService(i);
 			}
@@ -153,14 +153,14 @@ public class Alarmsetter extends ListActivity {
 				
 			else
 			{
-				db=new com.example.gtacampus.DataManipulator(this);
+				db=new com.example.freeneyj.attendance2.DataManipulator(this);
 			if(requestCode==2)
 					db.alarmsave(data);
 					
 		if(requestCode==3)
 				db.alarmupdate(data,alarmid);
 		db.close();
-		Intent i = new Intent(getBaseContext(), com.example.gtacampus.MyAlarm.class);
+		Intent i = new Intent(getBaseContext(), com.example.freeneyj.attendance2.MyAlarm.class);
 		i.setAction("setalarm");
 		startService(i);
 		initlist();
@@ -200,7 +200,7 @@ public class Alarmsetter extends ListActivity {
 			.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
-					Intent alintent=new Intent(Alarmsetter.this, com.example.gtacampus.AlarmOptions.class);
+					Intent alintent=new Intent(Alarmsetter.this, com.example.freeneyj.attendance2.AlarmOptions.class);
 					alintent.putExtra("year", Year);
 					alintent.putExtra("month", month);
 					alintent.putExtra("day", day);
@@ -234,7 +234,7 @@ public class Alarmsetter extends ListActivity {
 				
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
-					startActivityForResult(new Intent(Alarmsetter.this, com.example.gtacampus.Password.class), 10);
+					startActivityForResult(new Intent(Alarmsetter.this, com.example.freeneyj.attendance2.Password.class), 10);
 					removeDialog(DELETE_ALARM);
 				}
 			})
@@ -256,7 +256,7 @@ public class Alarmsetter extends ListActivity {
 		public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
 				int arg2, long arg3) {
 			// TODO Auto-generated method stub
-			db = new com.example.gtacampus.DataManipulator(Alarmsetter.this);
+			db = new com.example.freeneyj.attendance2.DataManipulator(Alarmsetter.this);
 			alarms = db.fetchalarms();
 			alarms.moveToPosition(arg2);
 			alarmid = alarms.getInt(0);
@@ -274,10 +274,10 @@ public class Alarmsetter extends ListActivity {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
 		
-		db = new com.example.gtacampus.DataManipulator(Alarmsetter.this);
+		db = new com.example.freeneyj.attendance2.DataManipulator(Alarmsetter.this);
 		alarms = db.fetchalarms();
 		alarms.moveToPosition(position);
-		Intent alintent=new Intent(Alarmsetter.this, com.example.gtacampus.AlarmOptions.class);
+		Intent alintent=new Intent(Alarmsetter.this, com.example.freeneyj.attendance2.AlarmOptions.class);
 		alarmid = alarms.getInt(0);
 		alarmtitle = alarms.getString(6);
 		alintent.putExtra("year", alarms.getInt(1));

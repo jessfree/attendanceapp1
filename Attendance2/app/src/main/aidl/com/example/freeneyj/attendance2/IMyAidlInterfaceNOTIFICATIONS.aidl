@@ -6,8 +6,7 @@ import android.app.Notification;
 // Declare any non-default types here with import statements
 
 oneway interface IMyAidlInterfaceNOTIFICATIONS {
-  * Send an ambient notification to the service.
-     */
+
     void notify(String packageName, int id, String tag, in Notification notification);
 
     /**

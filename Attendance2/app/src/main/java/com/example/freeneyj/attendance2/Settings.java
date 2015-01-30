@@ -34,7 +34,7 @@ public class Settings extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.appsettings);
-		settings = getSharedPreferences("GTAcampuSettings", MODE_PRIVATE);
+		settings = getSharedPreferences("freeneyj.attendance2ettings", MODE_PRIVATE);
 		changesettings = settings.edit();
 		ToggleButton coursealerts = (ToggleButton)findViewById(R.id.coursealerts);
 		coursealerts.setChecked(settings.getBoolean("coursealerts", true));
@@ -67,13 +67,13 @@ public class Settings extends Activity {
 	protected void onStop() {
 		// TODO Auto-generated method stub
        resetalarm();
-       startActivity(new Intent(Settings.this, com.example.gtacampus.CampusActivity.class));
+       startActivity(new Intent(Settings.this, com.example.freeneyj.attendance2.CampusActivity.class));
        super.onStop();
 	}
 	
 	
 	private void resetalarm(){
-		Intent setalarm = new Intent(Settings.this, com.example.gtacampus.MyAlarm.class);
+		Intent setalarm = new Intent(Settings.this, com.example.freeneyj.attendance2.MyAlarm.class);
 		setalarm.setAction("setalarm");
 		startService(setalarm);
 	}
@@ -212,7 +212,7 @@ public class Settings extends Activity {
 			
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
-				SharedPreferences settings = getSharedPreferences("GTAcampuSettings", MODE_PRIVATE);
+				SharedPreferences settings = getSharedPreferences("freeneyj.attendance2ettings", MODE_PRIVATE);
 				SharedPreferences.Editor settingseditor = settings.edit();
 				settingseditor.putString("Password", pwd.getText().toString());
 				settingseditor.commit();
@@ -224,7 +224,7 @@ public class Settings extends Activity {
 		
 		case SERVER:
 			
-			settings = getSharedPreferences("GTAcampuSettings", MODE_PRIVATE);
+			settings = getSharedPreferences("freeneyj.attendance2ettings", MODE_PRIVATE);
 			text.setText("Enter the address where you hosted the web-services ");
 			path = new EditText(this);
 			if(settings.getString("server", "NULL").equals("NULL"))

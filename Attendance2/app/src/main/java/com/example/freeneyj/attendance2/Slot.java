@@ -82,7 +82,7 @@ public class Slot extends Activity {
 	tabletime.setLayoutParams(params);
 	tabletime.setOrientation(LinearLayout.HORIZONTAL);
 	
-		com.example.gtacampus.DataManipulator db = new com.example.gtacampus.DataManipulator(this);
+		com.example.freeneyj.attendance2.DataManipulator db = new com.example.freeneyj.attendance2.DataManipulator(this);
 		String times[] = db.gettimings();
 		
 
@@ -171,7 +171,7 @@ public class Slot extends Activity {
 
 		public boolean onLongClick(View v) {
 			// TODO Auto-generated method stub
-			com.example.gtacampus.DataManipulator db = new com.example.gtacampus.DataManipulator(Slot.this);
+			com.example.freeneyj.attendance2.DataManipulator db = new com.example.freeneyj.attendance2.DataManipulator(Slot.this);
 			Cursor c_det = db.coursedetails(v.getTag().toString());
 			if(c_det.moveToFirst()){
 				coursetitle = c_det.getString(1);

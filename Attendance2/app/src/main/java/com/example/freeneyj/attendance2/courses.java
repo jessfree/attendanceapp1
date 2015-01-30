@@ -29,7 +29,7 @@ public class courses extends Activity {
 	EditText course_name,course_code,course_teacher;
 	LinearLayout c_timing;
 	Spinner course_day, course_time;
-	com.example.gtacampus.DataManipulator db;
+	com.example.freeneyj.attendance2.DataManipulator db;
 	int class_count,timeflag=0;
 	int[] day_id,hour_pos;
 	
@@ -44,7 +44,7 @@ public class courses extends Activity {
 		c_timing = (LinearLayout)findViewById(R.id.ll_course_timing);
 		course_day = (Spinner)findViewById(R.id.course_day);
 		course_time=(Spinner)findViewById(R.id.course_time);
-		db = new com.example.gtacampus.DataManipulator(this);
+		db = new com.example.freeneyj.attendance2.DataManipulator(this);
 		Cursor hourtimings = db.gethourtimings();
 		hourtimings.moveToFirst();
 		for(int i=1;i<hourtimings.getColumnCount();i++)
@@ -63,7 +63,7 @@ public class courses extends Activity {
 	
 	public void addtime(View v)
 	{
-		db = new com.example.gtacampus.DataManipulator(this);
+		db = new com.example.freeneyj.attendance2.DataManipulator(this);
 		int day = course_day.getSelectedItemPosition();
 		int hour_ps = course_time.getSelectedItemPosition()+1;
 		Cursor slotstat = db.slotstat();
@@ -92,7 +92,7 @@ public class courses extends Activity {
 		code = course_code.getText().toString();
 		teacher = course_teacher.getText().toString();
 		if(name.length()>0&&code.length()>0&&teacher.length()>0&&timeflag==1){
-		db = new com.example.gtacampus.DataManipulator(this);
+		db = new com.example.freeneyj.attendance2.DataManipulator(this);
 		flag=db.insert(name, code, teacher);
 		if(flag!=-1){
 			for(int i=0;i<class_count;i++)
@@ -125,11 +125,11 @@ public class courses extends Activity {
 		switch(id) {
 		case DIALOG_ID:
 			builder.setMessage("Course added! Add another course ?")
-			.setTitle("GTAcampuS")
+			.setTitle("freeneyj.attendance2")
 			.setCancelable(false)
 			.setPositiveButton("No", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
-					Intent setalarm = new Intent(courses.this, com.example.gtacampus.MyAlarm.class);
+					Intent setalarm = new Intent(courses.this, com.example.freeneyj.attendance2.MyAlarm.class);
 					setalarm.setAction("setalarm");
 					startService(setalarm);
 					dismissDialog(DIALOG_ID);

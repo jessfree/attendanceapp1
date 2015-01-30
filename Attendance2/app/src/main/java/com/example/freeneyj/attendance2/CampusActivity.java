@@ -57,7 +57,7 @@ public class CampusActivity extends ListActivity {
 		if(getWindowManager().getDefaultDisplay().getWidth()<200)
 			sidebar.setVisibility(View.GONE);
 		if(isUpgraded()||!(isdbok()))
-		{	Intent i = new Intent(CampusActivity.this, com.example.gtacampus.Initialize.class);
+		{	Intent i = new Intent(CampusActivity.this, com.example.freeneyj.attendance2.Initialize.class);
 			startActivityForResult(i, 0);		}
 		
 		initalertnotif();
@@ -102,7 +102,7 @@ public class CampusActivity extends ListActivity {
 				finish();
 				break;
 		case 4:
-			i= new Intent(CampusActivity.this, com.example.gtacampus.Inbox.class);
+			i= new Intent(CampusActivity.this, com.example.freeneyj.attendance2.Inbox.class);
 			startActivity(i);
 			break;
 		default:
@@ -166,38 +166,38 @@ public class CampusActivity extends ListActivity {
 	
 	public void slotdisp(View v)
 	{	if(isdbok()){
-		Intent slots = new Intent(CampusActivity.this, com.example.gtacampus.Slot.class);
+		Intent slots = new Intent(CampusActivity.this, com.example.freeneyj.attendance2.Slot.class);
 		startActivity(slots);
 	}else
 		showDialog(DATABASE_ERROR);
 	}
 	
 	public void coursefn(View v)
-	{	Intent courseintent=new Intent(CampusActivity.this, com.example.gtacampus.courses.class);
+	{	Intent courseintent=new Intent(CampusActivity.this, com.example.freeneyj.attendance2.courses.class);
 		startActivity(courseintent);	}
 	
 	public void coursecheck(View v)
-	{	Intent check=new Intent(CampusActivity.this, com.example.gtacampus.CheckData.class);
+	{	Intent check=new Intent(CampusActivity.this, com.example.freeneyj.attendance2.CheckData.class);
 		startActivity(check);	}
 	
 	public void notes(View v)
-	{	Intent noteint=new Intent(CampusActivity.this, com.example.gtacampus.notedata.class);
+	{	Intent noteint=new Intent(CampusActivity.this, com.example.freeneyj.attendance2.notedata.class);
 		startActivity(noteint);	}
 	
 	public void bunk(View v)
-	{	Intent bunkmeter=new Intent(CampusActivity.this, com.example.gtacampus.bunkom.class);
+	{	Intent bunkmeter=new Intent(CampusActivity.this, com.example.freeneyj.attendance2.bunkom.class);
 		startActivity(bunkmeter);	}
 	
 
 	
 	public void alarm(View v)
-	{	Intent alarmintent = new Intent(CampusActivity.this, com.example.gtacampus.Alarmsetter.class);
+	{	Intent alarmintent = new Intent(CampusActivity.this, com.example.freeneyj.attendance2.Alarmsetter.class);
 		startActivity(alarmintent);			}
 
 	public boolean isdbok(){
-		com.example.gtacampus.DataManipulator db = new com.example.gtacampus.DataManipulator(this);
+		com.example.freeneyj.attendance2.DataManipulator db = new com.example.freeneyj.attendance2.DataManipulator(this);
 		try{
-			db.gettable(com.example.gtacampus.DataManipulator.TABLE_NAME4);
+			db.gettable(com.example.freeneyj.attendance2.DataManipulator.TABLE_NAME4);
 		}
 		catch(RuntimeException e){
 			db.close();
@@ -250,8 +250,8 @@ public class CampusActivity extends ListActivity {
 			ContentValues values;
 			BufferedReader restorereader;
 			suc_flag = true;
-			restorefile = new File(Environment.getExternalStorageDirectory()+"/GTAcampuS/Notes");
-			com.example.gtacampus.DataManipulator db = new com.example.gtacampus.DataManipulator(CampusActivity.this);
+			restorefile = new File(Environment.getExternalStorageDirectory()+"/freeneyj.attendance2/Notes");
+			com.example.freeneyj.attendance2.DataManipulator db = new com.example.freeneyj.attendance2.DataManipulator(CampusActivity.this);
 		try {
 			if(restorefile.exists()){
 			File[] notes = restorefile.listFiles();
@@ -268,10 +268,10 @@ public class CampusActivity extends ListActivity {
 					db.insertnote(title, content);}}
 				
 			
-			restorefile = new File(Environment.getExternalStorageDirectory()+"/GTAcampuS/campus.dat");
+			restorefile = new File(Environment.getExternalStorageDirectory()+"/freeneyj.attendance2/campus.dat");
 			if(restorefile.exists()){
 			restorereader = new BufferedReader(new FileReader(restorefile));
-			db.deleteAll(com.example.gtacampus.DataManipulator.TABLE_NAME1);
+			db.deleteAll(com.example.freeneyj.attendance2.DataManipulator.TABLE_NAME1);
 			line = restorereader.readLine().trim();
 			values = new ContentValues();
 			while(!line.equals("||.endoffile().||")){
@@ -280,16 +280,16 @@ public class CampusActivity extends ListActivity {
 				values.put("code", restorereader.readLine().trim());
 				values.put("bunk", Integer.parseInt(restorereader.readLine().trim()));
 				restorereader.readLine();
-				db.insertdata(com.example.gtacampus.DataManipulator.TABLE_NAME1, values);
+				db.insertdata(com.example.freeneyj.attendance2.DataManipulator.TABLE_NAME1, values);
 				line = restorereader.readLine().trim();
 			}
 			}
 			else suc_flag=false;
 			
-			restorefile = new File(Environment.getExternalStorageDirectory()+"/GTAcampuS/alarms.dat");
+			restorefile = new File(Environment.getExternalStorageDirectory()+"/freeneyj.attendance2/alarms.dat");
 			if(restorefile.exists()){
 			restorereader = new BufferedReader(new FileReader(restorefile));
-			db.deleteAll(com.example.gtacampus.DataManipulator.TABLE_NAME3);
+			db.deleteAll(com.example.freeneyj.attendance2.DataManipulator.TABLE_NAME3);
 			line = restorereader.readLine().trim();
 			values = new ContentValues();
 			while(!line.equals("||.endoffile().||")){
@@ -313,31 +313,31 @@ public class CampusActivity extends ListActivity {
 				values.put("fri",  Integer.parseInt(restorereader.readLine().trim()));
 				values.put("sat",  Integer.parseInt(restorereader.readLine().trim()));
 				restorereader.readLine();
-				db.insertdata(com.example.gtacampus.DataManipulator.TABLE_NAME3, values);
+				db.insertdata(com.example.freeneyj.attendance2.DataManipulator.TABLE_NAME3, values);
 				line = restorereader.readLine().trim();
 			}
 			}else suc_flag=false;
 			
-			restorefile = new File(Environment.getExternalStorageDirectory()+"/GTAcampuS/bunks.dat");
+			restorefile = new File(Environment.getExternalStorageDirectory()+"/freeneyj.attendance2/bunks.dat");
 			if(restorefile.exists()){
 			restorereader = new BufferedReader(new FileReader(restorefile));
-			db.deleteAll(com.example.gtacampus.DataManipulator.TABLE_NAME5);
+			db.deleteAll(com.example.freeneyj.attendance2.DataManipulator.TABLE_NAME5);
 			line = restorereader.readLine().trim();
 			values = new ContentValues();
 			while(!line.equals("||.endoffile().||")){
 				values.put("course", line);
 				values.put("bunkdate", Long.parseLong(restorereader.readLine().trim()));
 				restorereader.readLine();
-				db.insertdata(com.example.gtacampus.DataManipulator.TABLE_NAME5, values);
+				db.insertdata(com.example.freeneyj.attendance2.DataManipulator.TABLE_NAME5, values);
 				line = restorereader.readLine().trim();
 			}
 			}else suc_flag=false;
 			
 			
-			restorefile = new File(Environment.getExternalStorageDirectory()+"/GTAcampuS/courses.dat");
+			restorefile = new File(Environment.getExternalStorageDirectory()+"/freeneyj.attendance2/courses.dat");
 			if(restorefile.exists()){
 			restorereader = new BufferedReader(new FileReader(restorefile));
-			db.deleteAll(com.example.gtacampus.DataManipulator.TABLE_NAME4);
+			db.deleteAll(com.example.freeneyj.attendance2.DataManipulator.TABLE_NAME4);
 			int k;
 			line = restorereader.readLine().trim();
 			values = new ContentValues();
@@ -352,7 +352,7 @@ public class CampusActivity extends ListActivity {
 				}
 				if(values.getAsInteger("DAY_ID")==1) //initialising tables at first loop only
 				db.coursetableinit(k-1);
-				db.insertdata(com.example.gtacampus.DataManipulator.TABLE_NAME4, values);
+				db.insertdata(com.example.freeneyj.attendance2.DataManipulator.TABLE_NAME4, values);
 				line = restorereader.readLine().trim();
 			}
 			}
@@ -370,7 +370,7 @@ public class CampusActivity extends ListActivity {
 				public void run() {
 					// TODO Auto-generated method stub
 					if(suc_flag){
-					Intent i = new Intent(getBaseContext(), com.example.gtacampus.MyAlarm.class);
+					Intent i = new Intent(getBaseContext(), com.example.freeneyj.attendance2.MyAlarm.class);
 					i.setAction("setalarm");
 					startService(i);
 					initalertnotif();
@@ -388,12 +388,12 @@ public class CampusActivity extends ListActivity {
 		public void run() {
 			// TODO Auto-generated method stub
 			File backupfile;
-			com.example.gtacampus.DataManipulator db = new com.example.gtacampus.DataManipulator(CampusActivity.this);
+			com.example.freeneyj.attendance2.DataManipulator db = new com.example.freeneyj.attendance2.DataManipulator(CampusActivity.this);
 			List<String[]> data = db.selectAllnotes();
 			suc_flag = true;
 			try{
 		for(String[] note : data){
-			backupfile = new File(Environment.getExternalStorageDirectory() + "/GTAcampuS/Notes/"+note[1] +".txt");
+			backupfile = new File(Environment.getExternalStorageDirectory() + "/freeneyj.attendance2/Notes/"+note[1] +".txt");
 			backupfile.mkdirs();
 			if(backupfile.exists())
 				backupfile.delete();
@@ -405,7 +405,7 @@ public class CampusActivity extends ListActivity {
 				backupwriter.close();
 			}
 
-			backupfile = new File(Environment.getExternalStorageDirectory() + "/GTAcampuS/campus.dat");
+			backupfile = new File(Environment.getExternalStorageDirectory() + "/freeneyj.attendance2/campus.dat");
 			if(backupfile.exists())
 				backupfile.delete();
 				backupfile.createNewFile();
@@ -423,15 +423,15 @@ public class CampusActivity extends ListActivity {
 			catch(Exception e){e.printStackTrace();
 			suc_flag=false;}
 			
-			backupfile = new File(Environment.getExternalStorageDirectory() + "/GTAcampuS/alarms.dat");
+			backupfile = new File(Environment.getExternalStorageDirectory() + "/freeneyj.attendance2/alarms.dat");
 			writetosd(backupfile, db.fetchalarms());
 			
-			backupfile = new File(Environment.getExternalStorageDirectory() + "/GTAcampuS/bunks.dat");
-			writetosd(backupfile, db.gettable(com.example.gtacampus.DataManipulator.TABLE_NAME5));
+			backupfile = new File(Environment.getExternalStorageDirectory() + "/freeneyj.attendance2/bunks.dat");
+			writetosd(backupfile, db.gettable(com.example.freeneyj.attendance2.DataManipulator.TABLE_NAME5));
 			
 			
-			backupfile = new File(Environment.getExternalStorageDirectory() + "/GTAcampuS/courses.dat");
-			writetosd(backupfile, db.gettable(com.example.gtacampus.DataManipulator.TABLE_NAME4));
+			backupfile = new File(Environment.getExternalStorageDirectory() + "/freeneyj.attendance2/courses.dat");
+			writetosd(backupfile, db.gettable(com.example.freeneyj.attendance2.DataManipulator.TABLE_NAME4));
 			
 			db.close();
 			
@@ -486,7 +486,7 @@ public class CampusActivity extends ListActivity {
 	}
 	
 	public void getsettings(View v){
-		startActivityForResult(new Intent(CampusActivity.this, com.example.gtacampus.Password.class), 3);
+		startActivityForResult(new Intent(CampusActivity.this, com.example.freeneyj.attendance2.Password.class), 3);
 	}
 	
 	@Override
@@ -513,23 +513,23 @@ public class CampusActivity extends ListActivity {
 			break;
 			
 		case Menu.FIRST+3:
-			bfile = new File(Environment.getExternalStorageDirectory()+"/GTAcampuS/courses.dat");
+			bfile = new File(Environment.getExternalStorageDirectory()+"/freeneyj.attendance2/courses.dat");
 		if(bfile.exists())
 			showDialog(BACKUP_EXISTS);
 		else
-			startActivityForResult(new Intent(this, com.example.gtacampus.Password.class), 1);
+			startActivityForResult(new Intent(this, com.example.freeneyj.attendance2.Password.class), 1);
 			break;
 			
 		case Menu.FIRST+4:
-			bfile = new File(Environment.getExternalStorageDirectory()+"/GTAcampuS/courses.dat");
+			bfile = new File(Environment.getExternalStorageDirectory()+"/freeneyj.attendance2/courses.dat");
 		if(bfile.exists())
-			startActivityForResult(new Intent(this, com.example.gtacampus.Password.class), 2);
+			startActivityForResult(new Intent(this, com.example.freeneyj.attendance2.Password.class), 2);
 		else
 			showDialog(RESTORE_ERROR);
 		break;
 		
 		case Menu.FIRST+5:
-			startActivityForResult(new Intent(CampusActivity.this, com.example.gtacampus.Password.class), 3);
+			startActivityForResult(new Intent(CampusActivity.this, com.example.freeneyj.attendance2.Password.class), 3);
 		break;
 		
 		default:			break;
@@ -576,7 +576,7 @@ public class CampusActivity extends ListActivity {
 			
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
-				Intent read = new Intent(CampusActivity.this, com.example.gtacampus.Textviewer.class);
+				Intent read = new Intent(CampusActivity.this, com.example.freeneyj.attendance2.Textviewer.class);
 				read.putExtra("text", getString(R.string.help));
 				read.putExtra("title", "checkin Help");
 				startActivity(read);
@@ -633,7 +633,7 @@ public class CampusActivity extends ListActivity {
 				
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
-					startActivityForResult(new Intent(CampusActivity.this, com.example.gtacampus.Password.class), 1);
+					startActivityForResult(new Intent(CampusActivity.this, com.example.freeneyj.attendance2.Password.class), 1);
 					dismissDialog(BACKUP_EXISTS);
 				}
 			})
@@ -682,7 +682,7 @@ public class CampusActivity extends ListActivity {
 			uname = new EditText(this);
 			uname.setInputType(InputType.TYPE_CLASS_TEXT);
 			uname.setEms(15);
-			uname.setText("GTAcampuS User");
+			uname.setText("freeneyj.attendance2 User");
 			uname.setFocusable(true);
 			uname.setTextColor(getResources().getColor(android.R.color.black));
 			ll.addView(utext);
@@ -709,7 +709,7 @@ public class CampusActivity extends ListActivity {
 				
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
-					SharedPreferences settings = getSharedPreferences("GTAcampuSettings", MODE_PRIVATE);
+					SharedPreferences settings = getSharedPreferences("freeneyj.attendance2ettings", MODE_PRIVATE);
 					SharedPreferences.Editor settingseditor = settings.edit();
 					settingseditor.putInt("Password", pwd.getText().toString().hashCode());
 					settingseditor.putString("Username", uname.getEditableText().toString());
